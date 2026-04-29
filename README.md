@@ -1,4 +1,4 @@
-# Comandos git
+# Comandos Git
 
 Este repositório tem como objetivo reunir informações sobre o uso do Git, desde comandos básicos para realizar commits até operações de versionamento de código.
 
