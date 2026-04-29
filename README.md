@@ -21,23 +21,60 @@ git push origin nome_da_branch
 
 ## 🔄 Como trazer atualizações do repositório remoto?
 ```bash
-git pull --rebase origin nome_da_branch
+git pull origin nome_da_branch
 ```
 
 ## ⚠️ Fiz alterações sem atualizar a branch, o que fazer?
 
+Nessa situação, podem ter ocorrido dois cenários. Siga as instruções conforme o seu caso:
+
+### 1. Ainda não fiz commit (apenas editei os arquivos)
+Se você fez alterações locais, mas percebeu que a branch remota está à frente, o Git permite “guardar” temporariamente seu trabalho para atualizar a branch com segurança.
+
 ```bash
-# Traga as atualizações do repositório remoto
+# Guarda suas alterações temporariamente
+git stash
+
+# Atualiza a branch local com a versão remota
+git pull origin nome_da_branch
+
+# Restaura suas alterações
+git stash pop
+```
+
+Se houver conflitos durante o git stash pop, o Git irá avisar e você precisará resolvê-los manualmente.
+
+Após resolver ou se não houver conflitos, finalize normalmente:
+
+```bash
+git add .
+git commit -m "Descrição das alterações"
+git push origin nome_da_branch
+```
+
+### 2. Já fiz commit local, mas não consigo dar push
+
+Se você já fez commit, mas o git push foi rejeitado (geralmente porque a branch remota está à frente), você precisa integrar as mudanças remotas antes de enviar as suas.
+
+A forma mais recomendada é usar rebase:
+
+```bash
+# Atualiza sua branch aplicando seus commits por cima da versão remota
+git pull --rebase origin nome_da_branch
+```
+
+Se não houver conflito, após o processo de rebase rode:
+```bash
 git pull origin nome_da_branch
 ```
-Se houver conflito o git irá avisar e vc precisará resolver manualmente
+Se houver conflitos, o Git irá interromper o processo e você deverá resolvê-los manualmente.
 
-Após resolver os conflitos, continue o rebase e envie as alterações pro repositório:
+Depois de resolver:
 
 ```bash
 git add .
 git rebase --continue
-git push origin nome_da_branch
+git pull origin nome_da_branch
 ```
 
 ## 🗑️ Como excluir arquivos da branch?
