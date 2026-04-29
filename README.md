@@ -9,6 +9,7 @@ git clone link_do_repositório
 
 cd nome_do_repositório
 
+# Abrir a pasta do repositório no VsCode
 code .
 
 ```
