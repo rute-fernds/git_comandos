@@ -63,7 +63,7 @@ git branch nome_da_branch
 # Trocar para a nova branch
 git checkout nome_da_branch
 
-# Tudo em um único comando
+# Para fazer tudo com um único comando
 git checkout -b nome_da_branch
 ```
 
